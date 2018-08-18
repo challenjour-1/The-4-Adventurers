@@ -1,30 +1,31 @@
+#include <stdio.h>
+#include <string.h>
 #include <iostream>
-#include <string>
-#include <thread>
-#include <chrono>
+//#include <thread>
+//#include <chrono>
 
-using std::cout;
-using std::cin;
-using std::flush;
-using std::string;
-using std::this_thread::sleep_for;
-using std::chrono::milliseconds;
+//std:cout;
+//std::cin;
+//std::flush;
+//std::string;
+//std::this_thread::sleep_for;
+//std::chrono::milliseconds;
 
-void slow_print(const string&, unsigned int);
-void start_storyline();
-void start_questions(unsigned int);
-void validate_ans(const string&, unsigned int);
+int slow_print(int, int);
+int start_storyline();
+int start_questions(int);
+int validate_ans(int,int);
 
 int level;
 
-string respond;
+int respond;
 
     int main()
     {
-        cout << "Welcome Adventurer!\nwould you like to start?\nEnter Y if yes: " << flush;
-        cin >> respond;
+        std::cout << "Welcome Adventurer!\nwould you like to start?\nEnter Y if yes: ";
+        std::cin >> respond;
         
-        if (respond == "y" || respond == "Y"){
+        if (respond == 1){
             start_storyline();
         } else {
             return 0;
@@ -33,9 +34,9 @@ string respond;
         return 0;
     }
 
-    void start_storyline()
+    int start_storyline()
     {
-        string str = "The 4 Adventurers\n";
+        std::string str = "The 4 Adventurers\n";
         str.append("- Created by Mollejon The Writer of Group -\n");
         str.append("Group name : Gamers Chain\n");
         str.append("Opening song : Can't stop by RHCP\n");
@@ -51,22 +52,22 @@ string respond;
 
         slow_print(str, 30);
         
-        cout << "(press any key to continue...)";
+        std::cout << "(press any key to continue...)";
         
-        cin >> respond; //wait for the input
+        std::cin.get()// >> respond; //wait for the input
         
         start_questions(1); //iniate questions
         
     }
 
-    void start_questions(unsigned int level)
+    int start_questions(int level)
     {
         do{
             switch(level)
             {
                 case 1:
                     slow_print("This is a test question.\nA: blah\nB: blahblah", 30);
-                    cin >> respond;
+                    std::cin >> respond;
                     validate_ans(respond, level);
                     
                 break;
@@ -74,7 +75,7 @@ string respond;
         } while (level != 0);
     }
 
-    void validate_ans(const string& ans, unsigned int level)
+    int validate_ans(string ans, int level)
     {
         switch(level)
         {
@@ -83,7 +84,7 @@ string respond;
                 {
                     start_questions(2);
                 } else {
-                    cout << "Wrong! You have failed";
+                    std::cout << "Wrong! You have failed";
                     main();
                 }
                 
@@ -91,11 +92,11 @@ string respond;
         }
     }
 
-    void slow_print(const string& message, unsigned int millis_per_char)
+    slow_print(std::string message, int millis_per_char)
     {
-        for (const char c: message)
+        for (char c: message)
         {
-            cout << c << flush;
+            std::cout << c << flush;
             sleep_for(milliseconds(millis_per_char));
         }
     }
