@@ -3,7 +3,7 @@
 #include <thread>
 #include <chrono>
 
-// Name space resolutions
+// Name space resolutions /
 using std::cout;
 using std::flush;
 using std::string;
